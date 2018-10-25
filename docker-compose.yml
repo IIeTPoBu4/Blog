@@ -1,0 +1,47 @@
+version: '2'
+services:
+  php:
+    image: yiisoftware/yii2-php:7.1-apache
+    restart: always
+    environment:
+      - PHP_USER_ID=1000
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./:/app:delegated
+    ports:
+      - '80:80'
+    links:
+      - db
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - '3336:3336'
+    expose:
+    - 3336
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
+      - db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_USER: test
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: yii2-basic
+    command: --character-set-server=utf8 --collation-server=utf8_unicode_ci --lock-wait-timeout=604800 --interactive-timeout=604800
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOSTS=db
+      - PMA_VERBOSES=database
+      - PMA_USER=test
+      - PMA_PASSWORD=123456
+    ports:
+      - '8080:80'
+
+volumes:
+  db-volume:
