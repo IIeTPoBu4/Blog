@@ -62042,3 +62042,72 @@ $_SERVER = [
     'argv' => []
     'argc' => 0
 ]
+2018-10-25 09:51:59 [172.22.0.1][-][-][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "admin/comment/index". in /app/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('admin/comment/i...', Array)
+#1 /app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /app/web/index.php(13): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /app/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /app/web/index.php(13): yii\base\Application->run()
+#2 {main}
+2018-10-25 09:51:59 [172.22.0.1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'ru'
+    'PHPSESSID' => '4e5173947f2ea0348d74f0011c38213a'
+    '_csrf' => '8e2449b45ae74ba648313295e22d7532a340d6f4c69d34f18bec871d498b2483a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"69WRC97dHzqeSOrzaOJfI6vi6yWU9Hvw\";}'
+    'phpMyAdmin' => '6442d18c9a4917f445ee7d96de4281b9'
+    'auto_saved_sql_sort' => ''
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost/admin/article/view?id=1'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=ru; PHPSESSID=4e5173947f2ea0348d74f0011c38213a; _csrf=8e2449b45ae74ba648313295e22d7532a340d6f4c69d34f18bec871d498b2483a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%2269WRC97dHzqeSOrzaOJfI6vi6yWU9Hvw%22%3B%7D; phpMyAdmin=6442d18c9a4917f445ee7d96de4281b9; auto_saved_sql_sort='
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.25 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.25 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.22.0.4'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.22.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/index.php'
+    'REMOTE_PORT' => '36620'
+    'REDIRECT_URL' => '/admin/comment/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/admin/comment/index'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1540461119.608
+    'REQUEST_TIME' => 1540461119
+    'argv' => []
+    'argc' => 0
+]

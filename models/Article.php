@@ -111,9 +111,8 @@ class Article extends \yii\db\ActiveRecord
         if($category != null)
         {
             $this->link('category', $category);
-            return true;
+            return true;            
         }
-        
     }
 }
   
