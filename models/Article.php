@@ -152,5 +152,37 @@ class Article extends \yii\db\ActiveRecord
     {
         return Yii::$app->formatter->asDate($this->date);
     }
+
+    public static function getAll($pageSize =5)
+    {
+        // build a DB query to get all articles with status = 1
+        $query = Article::find();
+
+        // get the total number of articles (but do not fetch the article data yet)
+        $count = $query->count();
+
+        // create a pagination object with the total count
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pageSize]);
+
+        // limit the query using the pagination and retrieve the articles
+        $articles = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        $data['articles']= $articles;
+        $data['pagination']=$pagination;
+
+        return $data;
+    }
+
+    public static function getPopular()
+    {
+        return Article::find()->orderBy('viewed desc')->limit(3)->all();
+    }
+
+    public static function getRecent()
+    {
+        return Article::find()->orderBy('date asc')->limit(4)->all();
+    }
 }
   
