@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Tag;
+use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
 {
@@ -60,23 +62,37 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $data = Article::getAll();
+        $data = Article::getAll(); 
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = Category::getAll();
+        //$tags = ArrayHelper::map($article->tags, 'id', 'title');
 
         return $this->render('index', [
                              'articles'=>$data['articles'],
                              'pagination'=>$data['pagination'],
                              'popular'=>$popular,
                              'recent'=>$recent,
-                             'categories'=>$categories
+                             'categories'=>$categories,
+                             //'tags'=>$tags
                          ]);
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('single');
+        $article = Article::findOne($id);    
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = Category::getAll();
+        $tags = $article->tags;
+        
+        return $this->render('single',[
+            'article'=>$article,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'tags'=>$tags
+        ]);
     }
 
     public function actionCategory()

@@ -39,14 +39,15 @@ PublicAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="../public/images/logo.jpg" alt=""></a>
+                <a class="navbar-brand" href="/"><img src="../public/images/bmwlogo2.jpg" width="175px"  alt=""></a>
+                    
             </div>
 
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav text-uppercase">
-                    <li><a data-toggle="dropdown" class="dropdown-toggle" href="/">Home</a>
+                    <li><a data-toggle="dropdown" class="dropdown-toggle"  href="/">Home</a>
                         
                     </li>
                 </ul>
