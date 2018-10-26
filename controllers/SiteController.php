@@ -1,11 +1,16 @@
 <?php
 namespace app\controllers;
+use app\models\Article;
+use app\models\Category;
+use app\models\CommentForm;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+
 class SiteController extends Controller
 {
     /**
@@ -55,7 +60,44 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        // build a DB query to get all articles with status = 1
+        $query = Article::find();
+
+        // get the total number of articles (but do not fetch the article data yet)
+        $count = $query->count();
+
+        // create a pagination object with the total count
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize'=>1]);
+
+        // limit the query using the pagination and retrieve the articles
+        $articles = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+
+        $popular = Article::find()->orderBy('viewed desc')->limit(3)->all();
+
+        $recent = Article::find()->orderBy('date asc')->limit(4)->all();
+
+        $categories = Category::find()->all();
+
+        return $this->render('index', [
+                             'articles'=>$articles,
+                             'pagination'=>$pagination,
+                             'popular'=>$popular,
+                             'recent'=>$recent,
+                             'categories'=>$categories
+                         ]);
+    }
+
+    public function actionView()
+    {
+        return $this->render('single');
+    }
+
+    public function actionCategory()
+    {
+        return $this->render('category');
     }
     /**
      * Login action.

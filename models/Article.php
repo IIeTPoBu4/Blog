@@ -147,5 +147,10 @@ class Article extends \yii\db\ActiveRecord
     {
         ArticleTag::deleteAll(['article_id'=>$this->id]);
     }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+    }
 }
   
