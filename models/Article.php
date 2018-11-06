@@ -153,7 +153,7 @@ class Article extends \yii\db\ActiveRecord
         return Yii::$app->formatter->asDate($this->date);
     }
 
-    public static function getAll($pageSize =5)
+    public static function getAll($pageSize =3)
     {
         // build a DB query to get all articles with status = 1
         $query = Article::find();
