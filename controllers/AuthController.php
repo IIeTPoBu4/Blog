@@ -50,6 +50,15 @@ public function actionSignup()
         return $this->render('signup', ['model'=>$model]);
     }
 
+    public function actionLoginVk($uid, $first_name, $photo)
+    {
+        $user = new User();
+        if($user-> saveFromVk($uid, $first_name, $photo))
+        {
+            return $this->redirect(['site/index']); 
+        }   
+    }
+
     public function actionTest()
     {
         $user = User::findOne(1);
@@ -67,4 +76,6 @@ public function actionSignup()
 
 
     }
+
+
 }

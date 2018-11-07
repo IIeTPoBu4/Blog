@@ -13,6 +13,7 @@ use app\models\ContactForm;
 use app\models\Tag;
 use yii\helpers\ArrayHelper;
 
+
 class SiteController extends Controller
 {
     /**
@@ -85,13 +86,17 @@ class SiteController extends Controller
         $recent = Article::getRecent();
         $categories = Category::getAll();
         $tags = $article->tags;
+        $comments = $article->getArticleComments();
+        $commentForm= new CommentForm();
         
         return $this->render('single',[
             'article'=>$article,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories,
-            'tags'=>$tags
+            'tags'=>$tags,
+            'comments'=>$comments,
+            'commentForm'=>$commentForm
         ]);
     }
 
@@ -143,5 +148,22 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionComment($id)
+    {
+        $model = new CommentForm();
+
+        if(Yii::$app->request->isPost)
+
+        {
+            $model->load(Yii::$app->request->post());
+
+            if($model->saveComment($id))
+            {
+                Yii::$app->getSession()->setFlash('comment','Your comment will be added soon! Thank you!');
+                return $this->redirect(['site/view','id'=>$id]);
+            }
+        }
     }
 }
