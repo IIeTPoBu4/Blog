@@ -200,5 +200,28 @@ class Article extends \yii\db\ActiveRecord
     {
         return $this->getComments()->where(['status'=>1])->all();
     }
+
+    public function getCountViewPost()
+    {
+        $session = Yii::$app->session;
+
+        if(!isset($session['viewed']))
+        {
+            $session->set('viewed',[$this->id]);
+            $this->updateCounters(['count_viewed'=>1]);
+        }
+        else
+        {
+            if(!ArrayHelper::isIn($this->id, $session['viewed']))
+            {
+                $array = $session['viewed'];
+                array_push($array, $this->id);
+                $session->remove('viewed');
+                $session->set('viewed', $array);
+                $this->updateCounters(['count_viewed' => 1]);
+            }
+        }
+        return true;
+    }
 }
   

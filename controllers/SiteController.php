@@ -88,6 +88,8 @@ class SiteController extends Controller
         $tags = $article->tags;
         $comments = $article->getArticleComments();
         $commentForm= new CommentForm();
+        $model = $this->findModel($id);
+        $model->getCountViewPost();
         
         return $this->render('single',[
             'article'=>$article,
@@ -96,7 +98,8 @@ class SiteController extends Controller
             'categories'=>$categories,
             'tags'=>$tags,
             'comments'=>$comments,
-            'commentForm'=>$commentForm
+            'commentForm'=>$commentForm,
+            'model'=>$model,
         ]);
     }
 
